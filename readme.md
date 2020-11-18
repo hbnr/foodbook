@@ -2,29 +2,32 @@
 
 Test project where I'll be developing a node project using docker only. 
 
-build docker image
+build docker images
 ```
-docker build -t hbnr/foodbook .
+docker-compose build
 ``` 
 
-remove docker image
+run containers
 ```
-docker ps
-# find <container_id>
-docker rm -f <container_id>
+docker-compose up -d
 ```
 
-serve angular app
+run and build
 ```
-docker run -dp 4200:4200 hbnr/foodbook
-```
-
-serve angular app with volumes - should work but does not hotreload
-```
-docker run -dp 4200:4200 -v ${PWD}/app:app hbnr/foodbook
+docker-compose up -d --build
 ```
 
-bash into (using powershell/linux)
+close/turn down containers
 ```
-docker exec -it <container_id> sh
+docker-compose down
+```
+
+see logs of angular app
+```
+docker-compose logs -f app
+```
+
+shell into app
+```
+docker-compose exec app sh
 ```
